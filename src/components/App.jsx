@@ -8,28 +8,14 @@ function App() {
   });
 
   function handleChange(event) {
+
     const { name, value } = event.target;
 
     setContact(prevValue => {
-      if (name === "fName") {
-        return {
-          fName: value,
-          lName: prevValue.lName,
-          email: prevValue.email
-        };
-      } else if (name === "lName") {
-        return {
-          fName: prevValue.fName,
-          lName: value,
-          email: prevValue.email
-        };
-      } else if (name === "email") {
-        return {
-          fName: prevValue.fName,
-          lName: prevValue.lName,
-          email: value
-        };
-      }
+      return {
+        ...prevValue,    // Spread operator to put back all previous values
+        [name]: value    // Key variable `name` must be in square bracket, or else it will be interpretted as literal String 
+      };
     });
   }
 
